@@ -1,6 +1,7 @@
 package com.sedilson.android_github.retrofit.webclient
 
 import com.sedilson.android_github.models.Repository
+import com.sedilson.android_github.models.RepositoryResponse
 import com.sedilson.android_github.retrofit.AppRetrofit
 import com.sedilson.android_github.retrofit.service.RepositoryService
 import retrofit2.Call
@@ -33,7 +34,7 @@ class RepositoryWebClient(
     }
 
     fun searchForAllRepos(
-        whenSuccess: (retrievedRepos: List<Repository>?) -> Unit,
+        whenSuccess: (retrievedRepos: RepositoryResponse?) -> Unit,
         whenFailed: (error: String?) -> Unit
     ) {
         executeRequest(

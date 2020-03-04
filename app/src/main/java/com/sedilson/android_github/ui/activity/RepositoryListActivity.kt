@@ -1,12 +1,14 @@
 package com.sedilson.android_github.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.sedilson.android_github.R
+import com.sedilson.android_github.models.RepositoryResponse
 import com.sedilson.android_github.retrofit.webclient.RepositoryWebClient
 import com.sedilson.android_github.ui.activity.extensions.showErrorMessage
 import com.sedilson.android_github.ui.recyclerview.adapter.RepositoryListAdapter
 import kotlinx.android.synthetic.main.activity_repo_list.*
+import retrofit2.Response
 
 class RepositoryListActivity : AppCompatActivity() {
 
@@ -35,9 +37,10 @@ class RepositoryListActivity : AppCompatActivity() {
     private fun searchRepos() {
         webClient.searchForAllRepos(
             whenSuccess = {repositories ->
-                repositories?.let { adapter.updateRepoList(it) }
+                val listRepos = repositories?.items
+                adapter.updateRepoList(listRepos)
             }, whenFailed = {
-                showErrorMessage("Unable to get the repos")
+                showErrorMessage("Unable to load the repos")
             }
         )
     }

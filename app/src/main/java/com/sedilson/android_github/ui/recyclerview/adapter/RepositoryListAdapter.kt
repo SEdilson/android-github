@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sedilson.android_github.R
 import com.sedilson.android_github.models.Repository
+import com.sedilson.android_github.models.RepositoryResponse
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.repo_item.view.*
+import retrofit2.Response
 
 class RepositoryListAdapter(
     private val context: Context,
@@ -28,16 +30,14 @@ class RepositoryListAdapter(
         holder.bindRepo(retrievedRepository)
     }
 
-    fun updateRepoList(repositories: List<Repository>) {
+    fun updateRepoList(repositories: List<Repository>?) {
         this.repositories.clear()
-        this.repositories.addAll(repositories)
+        repositories?.let { this.repositories.addAll(it) }
         notifyItemRangeInserted(0, this.repositories.size)
     }
 
     inner class ViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {
-
-        private lateinit var repository: Repository
 
         private val repositoryNameTextView = itemView.repo_item_name
         private val repositoryDescriptionTextView = itemView.repo_item_description
@@ -47,12 +47,11 @@ class RepositoryListAdapter(
         private val repositoryOwnerAvatarImageView = itemView.repo_item_user_avatar
 
         fun bindRepo(repository: Repository) {
-            this.repository = repository
-            repositoryNameTextView.text = repository.name
-            repositoryDescriptionTextView.text = repository.description
-            repositoryNumberOfForksTextView.text = repository.forks_count.toString()
-            repositoryNumberOfStarsTextView.text = repository.stargazers_count.toString()
-            repositoryOwnerUsernameTextView.text = repository.owner.login
+            repositoryNameTextView?.text = repository.name
+            repositoryDescriptionTextView?.text = repository.description
+            repositoryNumberOfForksTextView?.text = repository.forks_count.toString()
+            repositoryNumberOfStarsTextView?.text = repository.stargazers_count.toString()
+            repositoryOwnerUsernameTextView?.text = repository.owner.login
             Picasso.with(context).load(repository.owner.avatar_url)
                 .into(repositoryOwnerAvatarImageView)
         }

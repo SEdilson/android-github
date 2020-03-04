@@ -26,7 +26,7 @@ class AppRetrofit {
             .build()
     }
 
-    val repositoryService: RepositoryService by lazy {
-        retrofit.create(RepositoryService::class.java)
-    }
+    val repositoryService: RepositoryService
+        get() = this.retrofit.create<RepositoryService>(
+        RepositoryService::class.java)
 }
