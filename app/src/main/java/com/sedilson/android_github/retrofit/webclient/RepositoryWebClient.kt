@@ -11,7 +11,8 @@ import retrofit2.Response
 private const val FAILED_REQUEST_MESSAGE = "Request to API failed"
 
 class RepositoryWebClient(
-    private val service: RepositoryService = AppRetrofit().repositoryService
+    private val service: RepositoryService = AppRetrofit().repositoryService,
+    private val page: Int
 ) {
 
     private fun <T> executeRequest(
@@ -38,7 +39,7 @@ class RepositoryWebClient(
         whenFailed: (error: String?) -> Unit
     ) {
         executeRequest(
-            service.getAllRepos(),
+            service.getAllRepos(page),
             whenSuccess,
             whenFailed
         )

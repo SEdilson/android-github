@@ -32,6 +32,7 @@ class RepositoryListAdapter(
     }
 
     fun updateRepoList(repositories: List<Repository>?) {
+        notifyItemRangeRemoved(0, this.repositories.size)
         this.repositories.clear()
         repositories?.let { this.repositories.addAll(it) }
         notifyItemRangeInserted(0, this.repositories.size)
@@ -52,7 +53,7 @@ class RepositoryListAdapter(
             repositoryDescriptionTextView?.text = repository.description.setStringMaxLength(60)
             repositoryNumberOfForksTextView?.text = repository.forks_count.toString()
             repositoryNumberOfStarsTextView?.text = repository.stargazers_count.toString()
-            repositoryOwnerUsernameTextView?.text = repository.owner.login
+            repositoryOwnerUsernameTextView?.text = repository.owner.login.setStringMaxLength(15)
             Picasso.with(context).load(repository.owner.avatar_url)
                 .into(repositoryOwnerAvatarImageView)
         }
