@@ -9,7 +9,7 @@
         android:id="@+id/repo_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="26dp"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +54,11 @@
         android:id="@+id/repo_item_user_avatar"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="16dp"
+        android:layout_margin="26dp"
         android:contentDescription="@string/user_avatar"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toEndOf="@id/repo_item_description"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_github_user_avatar" />
@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/repo_item_user_avatar"
         app:layout_constraintStart_toStartOf="@id/repo_item_user_avatar"
+        app:layout_constraintEnd_toEndOf="@id/repo_item_user_avatar"
         tools:text="username"
         android:textColor="@android:color/holo_blue_dark"/>
 

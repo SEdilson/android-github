@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sedilson.android_github.R
+import com.sedilson.android_github.extensions.setStringMaxLength
 import com.sedilson.android_github.models.Repository
 import com.sedilson.android_github.models.RepositoryResponse
 import com.squareup.picasso.Picasso
@@ -47,8 +48,8 @@ class RepositoryListAdapter(
         private val repositoryOwnerAvatarImageView = itemView.repo_item_user_avatar
 
         fun bindRepo(repository: Repository) {
-            repositoryNameTextView?.text = repository.name
-            repositoryDescriptionTextView?.text = repository.description
+            repositoryNameTextView?.text = repository.name.setStringMaxLength(12)
+            repositoryDescriptionTextView?.text = repository.description.setStringMaxLength(60)
             repositoryNumberOfForksTextView?.text = repository.forks_count.toString()
             repositoryNumberOfStarsTextView?.text = repository.stargazers_count.toString()
             repositoryOwnerUsernameTextView?.text = repository.owner.login
